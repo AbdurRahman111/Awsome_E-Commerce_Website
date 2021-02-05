@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}My Post{% endblock %}
+
+
+{% block body %}
+
+</br>
+</br>
+<div class="container">
+<h3><p class="text-center" style="color:#07889E;">Your Job Posts</p></h3><hr>
+</div>
+{% if mypost %}
+{% for k in mypost %}
+<a href="{% url 'job_post_details' k.id %}">
+<div class="card container">
+  <div class="card-body">
+    <h5 class="card-title">{{k.job_title}}</h5>
+    <h7>{{k.post_date}}</h7>
+    <p class="text-right"><button class="btn_1"><small>{{k.job_post_status}}</small></button></p>
+
+    <hr>
+    <p class="card-text">Salary : {{k.salary}}</p>
+
+  </div>
+</div>
+	</a>
+<br/>
+{% endfor %}
+{% else %}
+<p class="text-center">You Have No Job Post To See</p>
+{% endif %}
+
+
+
+<div class="pagination__wrapper">
+						<ul class="pagination">
+							{% if list %}
+							<li>
+								{% if mypost.has_previous %}
+								<a href="{% url 'see_my_post' %}?page={{mypost.previous_page_number}}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list %}
+							<li>
+								<a href="{% url 'see_my_post' %}?page={{i}}" class="active">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if mypost.has_next %}
+								<a href="{% url 'see_my_post' %}?page={{mypost.next_page_number}}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+						</ul>
+					</div>
+
+</br>
+</br>
+</br>
+{% endblock %}

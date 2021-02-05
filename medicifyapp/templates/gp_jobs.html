@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block title %}Gp Jobs{% endblock %}
+
+
+{% block body %}
+
+<div class="list-group-item">
+
+
+				<div class="container mt-3">
+					<div class="text-right">
+						<a href="/post_job" type="button" class="btn_1">Post a Job</a>
+						{% if user.is_authenticated %}
+						<a href="/see_my_post" type="button" class="btn_1">See My Posts</a>
+						{% else %}
+						{% endif %}
+					</div>
+				</div>
+
+
+
+{% if messages %}
+{% for message in messages %}
+
+<h6><p class="text-center" style="color:green;">{{message}}</p></h6>
+{% endfor %}
+{% endif %}
+
+<form class="container mb-5 pb-5" method="POST" action="/gp_jobs">{% csrf_token %}
+					<div class="form_container">
+						<div class="form-group">
+							<div class="pt-5 text-center"><h3>Search Your Job</h3></div>
+							<label class="form-label">Job Title</label>
+							<input type="text" name="job_title" value="{{job_title}}"  class="form-control" placeholder="Job Title*" required>
+
+						</div>
+						<div class="row no-gutters">
+							<div class="col-6 pr-1">
+								<div class="form-group">
+									<label class="form-label">Location</label>
+									<input type="text" name="job_location" value="{{job_location}}"  class="form-control" placeholder="Location*" required>
+								</div>
+							</div>
+							<div class="col-6 pl-1">
+								<div class="form-group">
+									<label class="form-label">Job Type</label>
+									<select name="job_type" id="job_type" class="form-control form-control form-control-lg" required>
+										<option selected="selected" value="Type">All Type</option>
+										<option value="Full-Time Type">Full-Time</option>
+										<option value="Contract Type">Contract</option>
+										<option value="Part-Time Type">Part-Time</option>
+										<option value="Freelance Type">Freelance</option>
+										<option value="Internship Type">Internship</option>
+										<option value="Temporary Type">Temporary</option>
+
+
+									</select>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="text-center"><input type="submit" value="Seach Job" class="btn_1 full-width"></div>
+					</div>
+					</form>
+<br/>
+
+
+
+<!--{% if all_job_post %}-->
+<!--	<div class="container">-->
+<!--		<hr><h3><p class="text-center">Latest Jobs</p></h3><hr>-->
+<!--	</div>-->
+
+<!--		{% for k in all_job_post %}-->
+<!--		<div class="card container">-->
+<!--		  <div class="card-body">-->
+<!--			  <a href="{% url 'job_post_details' k.id %}">{{k.job_title}}</a> |-->
+<!--			  <span class="card-text">Salary : {{k.salary}}</span> |-->
+<!--			  <span class="card-text">Location : {{k.job_location}}</span>-->
+
+<!--		  </div>-->
+<!--		</div>-->
+
+<!--		{% endfor %}-->
+
+<!--{% endif %}-->
+
+<!--{% if search_jobs_count %}-->
+<!--<div class="text-center"> About <b>{{search_jobs_count}}</b> results were found :</div>-->
+
+<!--{% endif %}-->
+
+
+
+
+{% if search_jobs_form %}
+		{% for k in search_jobs_form %}
+		<div class="card container">
+		  <div class="card-body">
+			  <a href="{% url 'job_post_details' k.id %}">{{k.job_title}}</a> |
+			  <span class="card-text">Salary : {{k.salary}}</span> |
+			  <div class="card-text">Location : {{k.job_location}}</div><br/>
+			  <div class="card-text">Publish Date : {{k.post_date}}</div>
+
+		  </div>
+		</div><br/>
+
+		{% endfor %}
+
+
+
+
+{% elif job_title %}
+<div class="container">
+	Your Search -
+
+	Title : <b>{{job_title}}</b>, Location : <b>{{job_location}}</b> and <b>{{job_type}}</b>
+	... - No result were found.</br>
+
+	Suggestion:
+	<ul>
+		<li>Try using other Job Title</li>
+		<li>Try using other Location</li>
+	</ul>
+</div>
+{% endif %}
+
+
+
+
+
+
+<div class="text-center mt-5"> </div>
+
+
+</div>
+
+{% endblock %}
+
+
+
+{% block js %} {% endblock %}

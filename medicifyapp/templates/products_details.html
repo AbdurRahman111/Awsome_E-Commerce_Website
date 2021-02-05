@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}{{Product_Details_details.product_name}}{% endblock %}
+
+
+{% block body %}
+
+<main class="">
+	    <div class="container margin_30">
+	        <div class="page_header">
+
+	            <h1>{{Product_Details_details.product_name}}</h1>
+	        </div>
+	        <!-- /page_header -->
+	        <div class="row justify-content-center">
+	            <div class="col-lg-6">
+	                <div class="owl-carousel owl-theme prod_pics magnific-gallery">
+	                    <div class="item">
+							<img src="/media/{{Product_Details_details.image}}" alt="">
+
+	                    </div>
+						{% if Product_Details_details.image2 %}
+	                    <!-- /item -->
+	                    <div class="item">
+							<img src="/media/{{Product_Details_details.image2}}" data-src="/media/{{Product_Details_details.image2}}" alt="" class="owl-lazy">
+
+	                    </div>
+						{% endif %}
+	                    <!-- /item -->
+						{% if Product_Details_details.image3 %}
+						<div class="item">
+							<img src="/media/{{Product_Details_details.image3}}" data-src="/media/{{Product_Details_details.image3}}" alt="" class="owl-lazy">
+
+	                    </div>
+						{% endif %}
+	                    <!-- /item -->
+						{% if Product_Details_details.image4 %}
+						<div class="item">
+							<img src="/media/{{Product_Details_details.image4}}" data-src="/media/{{Product_Details_details.image4}}" alt="" class="owl-lazy">
+
+	                    </div>
+						{% endif %}
+	                    <!-- /item -->
+						{% if Product_Details_details.image5 %}
+						<div class="item">
+							<img src="/media/{{Product_Details_details.image5}}" data-src="/media/{{Product_Details_details.image5}}" alt="" class="owl-lazy">
+
+	                    </div>
+						{% endif %}
+	                    <!-- /item -->
+	                </div>
+	                <!-- /carousel -->
+	            </div>
+				<div class="col-lg-6">
+
+					<div class="tab_content_wrapper">
+	        <div class="container">
+	            <div class="tab-content" role="tablist">
+	                <div id="pane-A" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-A">
+	                    <div class="card-header" role="tab" id="heading-A">
+	                        <h5 class="mb-0">
+	                            <a class="collapsed" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-A">
+	                                Description
+	                            </a>
+	                        </h5>
+	                    </div>
+
+	                    <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
+
+	                    </div>
+                        <div class="card-body">
+	                            <div class="row justify-content-between">
+	                                <div class="col-lg-6">
+										<h2 id="nameproduct{{Product_Details_details.id}}">{{Product_Details_details.product_name}}</h2><hr>
+	                                    <h3>Details</h3>
+										<p>
+										{{Product_Details_details.description}}
+										</p>
+
+	                                </div>
+
+	                                <div class="col-lg-5">
+										<div class="price_main">
+
+											<span class="new_price">
+
+												Price :
+
+												<span class="new_price" id="priceproduct{{Product_Details_details.id}}">
+												{{Product_Details_details.price}}
+												</span>
+
+											</span>
+											<span class="new_price" id="currency_typeproduct{{Product_Details_details.id}}">
+												{{Product_Details_details.currency_type}}
+												</span>
+
+											<span class="percentage">
+												{{Product_Details_details.status}}
+											</span>
+
+
+										</div>
+
+										<div class="prod_options version_2">
+										<div class="row">
+
+											<div class="col-xl-5 col-lg-5 col-md-6 col-6">
+
+											</div>
+										</div>
+
+										<div class="row mt-3">
+											<div class="col-lg-2 col-md-6">
+
+											</div>
+											<div class="col-lg-10 col-md-6">
+													<span id="divproduct{{Product_Details_details.id}}" class="divproduct">
+													<a id="product{{Product_Details_details.id}}" class="btn_1 product_cart">Add to Cart</a>
+													</span>
+											</div>
+										</div>
+									</div>
+
+	                                </div>
+	                            </div>
+	                        </div>
+	                </div>
+	                <!-- /TAB A -->
+
+	            </div>
+	            <!-- /tab-content -->
+	        </div>
+	        <!-- /container -->
+	    </div>
+
+				</div>
+	        </div>
+	        <!-- /row -->
+	    </div>
+	    <!-- /container -->
+
+
+
+
+
+	    <!-- /tab_content_wrapper -->
+
+	    <div class="bg_white">
+	        <div class="container margin_60_35">
+	            <div class="main_title">
+	                <h2>Related</h2>
+	                <span>Medicify Group Pvt. Ltd.</span>
+					<p><b>{{Product_Details_details.product_name}}</b> Releted Products</p>
+	            </div>
+	            <div class="owl-carousel owl-theme products_carousel">
+					{% if Product_Details_by_cate %}
+					{% for j in Product_Details_by_cate %}
+	                <div class="item">
+	                    <div class="grid_item">
+
+	                        <span class="ribbon off">{{j.status}}</span>
+	                        <figure>
+	                            <a href="{% url 'details_products' j.id %}">
+<!--	                                <img class="owl-lazy" src="/media/{{j.image}}" data-src="/media/{{j.image}}" alt="">-->
+									<img class="card-img-top" src="/media/{{j.image}}" data-src="/media/{{j.image}}" alt="" width="200" height="200">
+	                            </a>
+	                        </figure>
+
+	                        <a href="{% url 'details_products' j.id %}">
+	                            <h3>{{j.product_name}}</h3>
+	                        </a>
+	                        <div class="price_box">
+	                            <span class="new_price" id="priceproduct{{j.id}}">{{j.price}}</span> <span style="color:blue;"><b>{{j.currency_type}}</b></span>
+	                        </div>
+	                        <!-- <ul>
+
+	                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+	                        </ul> -->
+
+	                    </div>
+
+	                </div>
+					{% endfor %}
+					{% else %}
+					NO Related Product
+					{% endif %}
+	                <!-- /item -->
+
+	            </div>
+	            <!-- /products_carousel -->
+	        </div>
+	        <!-- /container -->
+	    </div>
+	    <!-- /bg_white -->
+
+	</main>
+	<!-- /main -->
+
+{% endblock %}
+
+
+
+{% block js %}
+
+<script>
+
+
+// console.log(product_cart)
+
+// if the add to card button is clicked, add/increament the item
+$('.product_cart').click(function(){
+	// $('.divproduct').on('click', 'button.product_cart', function(){
+	// console.log('clicked now');
+	// console.log(product_cart)
+	var idstr = this.id.toString();
+	// console.log("id...."+idstr);
+	if (product_cart[idstr] != undefined){
+		// console.log('old')
+		qty = product_cart[idstr][0] + 1;
+		// console.log(product_cart[idstr]);
+	}
+
+	else{
+		qty = 1;
+		name = document.getElementById('name' + idstr).innerHTML;
+		price = document.getElementById('price' + idstr).innerHTML;
+		currency_type=document.getElementById('currency_type' + idstr).innerHTML;
+		product_cart[idstr] = [qty, name, parseInt(price), currency_type];
+		// console.log(product_cart[idstr]);
+		// console.log('new')
+	}
+	// console.log("before update");
+	// console.log(product_cart);
+	updateCart(product_cart,idstr);
+
+	});
+
+
+//update the cart
+item_id='product'+'{{Product_Details_details.id}}';
+updateCart(product_cart,item_id);
+function updateCart(product_cart,item){
+	var sum = 0;
+
+	    // console.log("items..."+item);
+		sum = sum + product_cart[item][0];
+		// console.log(item);
+
+		a="<button id='minus" + item +"' class='btn_1 minus'>-</button> <span id='val" + item + "''>" + product_cart[item][0] + "</span> <button id='plus" + item + "'class='btn_1 plus'> + </button>"
+		b=`<button class="btn btn-danger"> Added to Cart</button>`
+
+		document.getElementById('div' + item).innerHTML = b;
+
+	// document.location=''
+
+	localStorage.setItem('product_cart', JSON.stringify(product_cart))
+	document.getElementById('product_cart').innerHTML = sum;
+	updateCart2(product_cart);
+}
+
+updateCart2(product_cart);
+function updateCart2(product_cart){
+	var sum = 0;
+	for (var item in product_cart){
+		sum = sum + product_cart[item][0]
+	}
+	localStorage.setItem('product_cart', JSON.stringify(product_cart))
+	document.getElementById('product_cart').innerHTML = sum;
+	updatePopover(product_cart);
+}
+
+
+// if plus or minus button clicked, change the card as well as display value
+$('.divproduct').on("click", "button.minus", function(){
+	// console.log('minus_clicked');
+	a = this.id.slice(12, );
+	// console.log(a);
+	product_cart['product' + a][0] = product_cart['product' + a][0] - 1;
+	product_cart['product' + a][0] = Math.max(0, product_cart['product' + a][0]);
+	document.getElementById('valproduct'+a).innerHTML = product_cart['product' + a][0];
+	updateCart(product_cart)
+});
+
+$('.divproduct').on("click", "button.plus", function(){
+	// console.log('plus_clicked');
+	a = this.id.slice(11, );
+	// console.log(a);
+	product_cart['product' + a][0] = product_cart['product' + a][0] + 1;
+	document.getElementById('valproduct'+a).innerHTML = product_cart['product' + a][0];
+	updateCart(product_cart)
+});
+
+</script>
+
+{% endblock %}

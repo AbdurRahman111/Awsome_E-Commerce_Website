@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}About Us{% endblock %}
+
+
+{% block body %}
+
+<br/>
+<br/>
+
+
+<section class="features1 cid-r7io8K1ARy" id="features1-i">
+
+    <div class="container-fluid">
+        <div class="row content-row">
+<!--            <div class="mbr-figure col-lg-1">-->
+
+<!--            </div>-->
+            <div class="media-content px-5  mbr-white py-4 col-lg-1"></div>
+            <div class="mbr-figure col-lg-5
+            text-center">
+              <img src="{% static 'medicifyapp/index/img/my.JPG' %}" alt="" title="" width="520" height="600">
+            </div>
+
+            <div class="media-content px-5  mbr-white py-4 col-lg-5">
+              <div class="content-block">
+                <h2 class="mbr-section-title mbr-fonts-style pb-4 display-2">About us</h2>
+
+                <p class="mbr-text testimonial-text mbr-fonts-style display-7">
+                    Medicify Group Pvt. Ltd. is a trusted supplier of affordable new and professionally operation room equipment.</p>
+
+                  <p class="mbr-text testimonial-text mbr-fonts-style display-7">Our operation equipment including utility columns, surgical and exam lights, stretchers and stretcher accessories, cushions and mattresses, sterilization and cleaning equipment, disposables and consumables, gel pads and positioners, surgical tables and surgical table accessories, digital integration systems.</p>
+
+                  <p class="mbr-text testimonial-text mbr-fonts-style display-7">Medicify Group Pvt. Ltd. is one of the leading professional delivery room equipment supplier company.</p>
+
+<p class="mbr-text testimonial-text mbr-fonts-style display-7">Our delivery equipment including amniotic hook, forceps, scissors, speculum, laparoscopic sponges, sutures, vacuum, hemostat, urinary catheter, toco transducer and more. Visit our all delivery room equipment by equipment category. Also you can send a message to us for any query.</p>
+              </div>
+            </div>
+
+            <div class="media-content px-5  mbr-white py-4 col-lg-1"></div>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+
+
+
+
+        <div class="row content-row">
+<!--            <div class="mbr-figure col-lg-1">-->
+
+<!--            </div>-->
+
+            <div class="media-content px-5  mbr-white py-4 col-lg-1"></div>
+            <div class="media-content px-5  mbr-white py-4 col-lg-5">
+                <h2 class="mbr-fonts-style mb-4 display-2">Contact Us</h2>
+                    <h3 class="mbr-section-subtitle mbr-fonts-style mb-4 mbr-light display-7">
+                        We will not share your data. Our manager will get back to you soon.</h3>
+                    <div data-form-alert="" hidden="">Thanks for filling out the form!</div>
+
+                <form method="POST" action="{% url 'contact' %}">{% csrf_token %}
+					  <div class="form-group">
+						<input type="text" name="name" class="form-control" placeholder="Name">
+					  </div>
+						<div class="form-group">
+						<input type="email" name="email" class="form-control" placeholder="Email">
+					  </div>
+
+					  <div class="form-group">
+						<textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3" placeholder="Your Message"></textarea>
+					  </div>
+						<button class="btn_1" type="submit">Submit</button>
+					</form>
+            </div>
+
+            <div class="mbr-figure col-lg-5
+            text-center">
+              <img src="{% static 'medicifyapp/index/img/Customer.jpg' %}" alt="" title="" width="520" height="600">
+
+            </div>
+            <div class="media-content px-5  mbr-white py-4 col-lg-1"></div>
+        </div>
+    </div>
+</section>
+<br/>
+<br/>
+<br/>
+
+
+
+
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+    {% endblock %}

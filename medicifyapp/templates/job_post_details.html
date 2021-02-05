@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}{{get_posted_jobs_id.job_title}}{% endblock %}
+
+{% block body %}
+
+</br>
+</br>
+</br>
+<div class="container">
+  <h5 class="text-center"><p style="color:#07889E;">{{get_posted_jobs_id.job_title}}</p> <span class="badge badge-primary badge-pill">(Status - {{get_posted_jobs_id.job_post_status}})</span></h5><hr>
+</div>
+
+
+
+<ul class="list-group container">
+  <li class="list-group-item"><b>Publish Date :</b></br> {{get_posted_jobs_id.post_date}}</li>
+  <li class="list-group-item"><b>Job Title :</b></br> {{get_posted_jobs_id.job_title}}</li>
+  <li class="list-group-item"><b>Company Name :</b></br> {{get_posted_jobs_id.company_name}}</li>
+  <li class="list-group-item"><b>Details :</b></br> {{get_posted_jobs_id.job_details}}</li>
+  <li class="list-group-item"><b>Qualification :</b></br> {{get_posted_jobs_id.qualification}}</li>
+  <li class="list-group-item"><b>Location :</b></br>{{get_posted_jobs_id.job_location}}</li>
+  <li class="list-group-item"><b>Job Type :</b></br>{{get_posted_jobs_id.job_type}}</li>
+  <li class="list-group-item"><b>Salary :</b></br>{{get_posted_jobs_id.salary}}</li>
+  <li class="list-group-item"><b>Job Provider :</b></br>{{get_posted_jobs_id.user.first_name}} {{get_posted_jobs_id.user.last_name}}</li>
+  <li class="list-group-item"><b>Phone :</b></br>{{get_posted_jobs_id.phone_number}}</li>
+  <li class="list-group-item"><b>Email :</b></br>{{get_posted_jobs_id.email}}</li>
+</ul>
+
+
+
+</br>
+</br>
+</br>
+
+{% endblock %}

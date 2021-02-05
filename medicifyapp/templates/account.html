@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+{% block title %}Account{% endblock %}
+
+
+{% block body %}
+
+
+
+	<main class="">
+		
+	<div class="container margin_30">
+		<div class="page_header">
+			<div class="breadcrumbs">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/account">Account</a></li>
+					
+				</ul>
+		</div>
+		<h1>Sign In or Create an Account</h1>
+	</div>
+
+
+	<!-- /page_header -->
+
+			<div class="row justify-content-center">
+			<div class="col-xl-6 col-lg-6 col-md-8">
+				<div class="box_account">
+					<h3 class="client">Already Client</h3>
+
+
+					<div class="form_container">
+						<div class="row no-gutters">
+							<div class="col-lg-5 pl-lg-1">
+								<a href="{% provider_login_url 'google' %}" class="social_bt google">Login with Google</a>
+							</div>
+							<div class="col-lg-2 pl-lg-1"></div>
+
+							<div class="col-lg-5 pr-lg-1">
+								<a href="{% provider_login_url 'facebook' %}" class="social_bt facebook">Login with Facebook</a>
+							</div>
+						</div>
+						<div class="divider"><span>Or</span></div>
+
+						{% if erorr_message_2 %}
+						<h5><p class="border rounded" style="color:red;">{{erorr_message_2}}</p></h5>
+						{% endif %}
+
+						<form action="login_func" method="POST">{% csrf_token %}
+						<div class="form-group">
+							<input type="text" class="form-control" name="log_username" id="log_username" value="{{log_username}}" placeholder="Username*">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="log_password" id="log_password" placeholder="Password*">
+						</div>
+						
+						<div class="text-center"><input type="submit" value="Log In" class="btn_1 full-width"></div>
+						</form>
+
+
+
+						<div id="forgot_pw">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email_forgot" id="email_forgot" placeholder="Type your email">
+							</div>
+							<p>A new password will be sent shortly.</p>
+							<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
+						</div>
+					</div>
+					<!-- /form_container -->
+				</div>
+				<!-- /box_account -->
+				<div class="row">
+					<div class="col-md-6 d-none d-lg-block">
+						<ul class="list_ok">
+							<li>Find Locations</li>
+							<li>Quality Location check</li>
+							<li>Data Protection</li>
+						</ul>
+					</div>
+					<div class="col-md-6 d-none d-lg-block">
+						<ul class="list_ok">
+							<li>Secure Payments</li>
+							<li>H24 Support</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+
+
+
+			<div class="col-xl-6 col-lg-6 col-md-8">
+				<div class="box_account">
+					<h3 class="new_client">New Client</h3> <small class="float-right pt-2">Username will be used when you log in !! </small>
+
+					{% if erorr_message %}
+					<h5><p class="border rounded" style="color:red;">{{erorr_message}}</p></h5>
+					{% endif %}
+
+					<form method="POST" action="/account">{% csrf_token %}
+					<div class="form_container">
+						<div class="form-group">
+							<input type="text" class="form-control" value="{{sign_username}}" name="sign_username" id="sign_username" placeholder="Username" required>
+
+						</div>
+						<div class="row no-gutters">
+							<div class="col-6 pr-1">
+								<div class="form-group">
+									<input type="text" name="sign_first_name" value="{{sign_first_name}}"  class="form-control" placeholder="First Name*">
+								</div>
+							</div>
+							<div class="col-6 pl-1">
+								<div class="form-group">
+									<input type="text" name="sign_last_name" value="{{sign_last_name}}"  class="form-control" placeholder="Last Name*">
+								</div>
+							</div>
+
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" name="sign_email" value="{{sign_email}}"  id="email_2" placeholder="Email*" required>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="sign_password" id="sign_password" placeholder="Password*" required>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="confirm_sign_password" id="confirm_sign_password" placeholder="Re-Type Password*" required>
+						</div>
+
+						<hr>
+						<div class="form-group">
+							<label class="container_check">Accept <a href="#0">Terms and conditions</a>
+								<input name="agree_terms" type="checkbox" required>
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="text-center"><input type="submit" value="Register" class="btn_1 full-width"></div>
+					</div>
+					</form>
+					<!-- /form_container -->
+				</div>
+				<!-- /box_account -->
+			</div>
+		</div>
+		<!-- /row -->
+		</div>
+		<!-- /container -->
+	</main>
+	<!--/main-->
+	
+	{% endblock %}

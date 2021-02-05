@@ -1,0 +1,484 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Ansonika">
+
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="icon"  href="{% static 'medicifyapp/index/img/fevi.png' %}">
+
+    <!-- Favicons-->
+    <!-- <link rel="shortcut icon" href="{% static 'medicifyapp/index/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'medicifyapp/index/img/apple-touch-icon-57x57-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{% static 'medicifyapp/index/img/apple-touch-icon-72x72-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{% static 'medicifyapp/index/img/apple-touch-icon-114x114-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{% static 'medicifyapp/index/img/apple-touch-icon-144x144-precomposed.png' %}"> -->
+	
+    <!-- GOOGLE WEB FONT -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" as="fetch" crossorigin="anonymous">
+    <script>
+    !function(e,n,t){"use strict";var o="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap",r="__3perf_googleFonts_c2536";function c(e){(n.head||n.body).appendChild(e)}function a(){var e=n.createElement("link");e.href=o,e.rel="stylesheet",c(e)}function f(e){if(!n.getElementById(r)){var t=n.createElement("style");t.id=r,c(t)}n.getElementById(r).innerHTML=e}e.FontFace&&e.FontFace.prototype.hasOwnProperty("display")?(t[r]&&f(t[r]),fetch(o).then(function(e){return e.text()}).then(function(e){return e.replace(/@font-face {/g,"@font-face{font-display:swap;")}).then(function(e){return t[r]=e}).then(f).catch(a)):a()}(window,document,localStorage);
+    </script>
+
+    <!-- BASE CSS -->
+    <link href="{% static 'medicifyapp/index/css/bootstrap.custom.min.css' %}" rel="stylesheet">
+    <link href="{% static 'medicifyapp/index/css/style.css' %}" rel="stylesheet">
+
+	<!-- SPECIFIC CSS -->
+    <link href="{% static 'medicifyapp/index/css/listing.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div id="page" class="theia-exception">
+		
+	<header class="version_1">
+		<div class="layer"></div><!-- Mobile menu overlay mask -->
+		<div class="main_header">
+			<div class="container">
+				<div class="row small-gutters">
+					<div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
+						<div id="logo" style="padding:10px 0">
+							<a href="/"><img src="{% static 'medicifyapp/index/img/logo.png' %}" alt="" width="80" height="70"></a>
+						</div>
+					</div>
+					<nav class="col-xl-6 col-lg-7">
+						<a class="open_close" href="javascript:void(0);">
+							<div class="hamburger hamburger--spin">
+								<div class="hamburger-box">
+									<div class="hamburger-inner"></div>
+								</div>
+							</div>
+						</a>
+						<!-- Mobile menu button -->
+						<div class="main-menu">
+							<div id="header_menu">
+								<a href="/"><img src="{% static 'medicifyapp/index/img/fevi.png' %}" alt="" width="100" height="35"></a>
+								<a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
+							</div>
+							<ul>
+
+								<li>
+									<a href="/">Home</a>
+								</li>
+								<li class="submenu">
+									<a href="javascript:void(0);" class="show-submenu">Product</a>
+									<ul>
+										{% for i in Categories_all %}
+										<li><span><a href="{% url 'category_search_by_user' i.id %}">{{i.category_name}}</a></span></li>
+										{% endfor %}
+
+									</ul>
+								</li>
+								<li>
+									<a href="/about">About Us</a>
+								</li>
+
+
+								<li class="submenu">
+									<a href="javascript:void(0);" class="show-submenu">Gp Jobs</a>
+									<ul>
+										<li><a href="{% url 'gp_jobs' %}">Search Jobs</a></li>
+										<li><a href="{% url 'post_job' %}">Post a job</a></li>
+										{% if user.is_authenticated %}
+										<li><a href="{% url 'see_my_post' %}">see my job</a></li>
+										{% endif %}
+
+									</ul>
+								</li>
+
+							</ul>
+
+						</div>
+
+						<!--/main-menu -->
+					</nav>
+
+
+					<div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right">
+						<a class="phone_top" href="tel:+610426677639"><strong><span>Need Help?</span>0426677639</strong></a>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+		</div>
+		<!-- /main_header -->
+
+		<div class="main_nav inner">
+			<div class="container">
+				<div class="row small-gutters">
+					<div class="col-xl-3 col-lg-3 col-md-3">
+						<nav class="categories">
+							<ul class="clearfix">
+<!--								<li><span>-->
+<!--										<a href="#">-->
+<!--											<span class="hamburger hamburger&#45;&#45;spin">-->
+<!--												<span class="hamburger-box">-->
+<!--													<span class="hamburger-inner"></span>-->
+<!--												</span>-->
+<!--											</span>-->
+<!--											Categories-->
+<!--										</a>-->
+<!--									</span>-->
+<!--									<div id="menu">-->
+<!--										<ul>-->
+<!--											<li><span><a href="#0">Collections</a></span>-->
+<!--												<ul>-->
+<!--													<li><a href="listing-grid-1-full.html">Trending</a></li>-->
+<!--													<li><a href="listing-grid-2-full.html">Life style</a></li>-->
+<!--													<li><a href="listing-grid-3.html">Running</a></li>-->
+<!--													<li><a href="listing-grid-4-sidebar-left.html">Training</a></li>-->
+<!--													<li><a href="listing-grid-5-sidebar-right.html">View all Collections</a></li>-->
+<!--												</ul>-->
+<!--											</li>-->
+
+<!--											<li><span><a href="#">Men</a></span>-->
+<!--												<ul>-->
+<!--													<li><a href="listing-grid-6-sidebar-left.html">Offers</a></li>-->
+<!--													<li><a href="listing-grid-7-sidebar-right.html">Shoes</a></li>-->
+<!--													<li><a href="listing-row-1-sidebar-left.html">Clothing</a></li>-->
+<!--													<li><a href="listing-row-3-sidebar-left.html">Accessories</a></li>-->
+<!--													<li><a href="listing-row-4-sidebar-extended.html">Equipment</a></li>-->
+<!--												</ul>-->
+<!--											</li>-->
+<!--											<li><span><a href="#">Women</a></span>-->
+<!--												<ul>-->
+<!--													<li><a href="listing-grid-1-full.html">Best Sellers</a></li>-->
+<!--													<li><a href="listing-grid-2-full.html">Clothing</a></li>-->
+<!--													<li><a href="listing-grid-3.html">Accessories</a></li>-->
+<!--													<li><a href="listing-grid-4-sidebar-left.html">Shoes</a></li>-->
+<!--												</ul>-->
+<!--											</li>-->
+<!--											<li><span><a href="#">Boys</a></span>-->
+<!--												<ul>-->
+<!--													<li><a href="listing-grid-6-sidebar-left.html">Easy On Shoes</a></li>-->
+<!--													<li><a href="listing-grid-7-sidebar-right.html">Clothing</a></li>-->
+<!--													<li><a href="listing-row-3-sidebar-left.html">Must Have</a></li>-->
+<!--													<li><a href="listing-row-4-sidebar-extended.html">All Boys</a></li>-->
+<!--												</ul>-->
+<!--											</li>-->
+<!--											<li><span><a href="#">Girls</a></span>-->
+<!--												<ul>-->
+<!--													<li><a href="listing-grid-1-full.html">New Releases</a></li>-->
+<!--													<li><a href="listing-grid-2-full.html">Clothing</a></li>-->
+<!--													<li><a href="listing-grid-3.html">Sale</a></li>-->
+<!--													<li><a href="listing-grid-4-sidebar-left.html">Best Sellers</a></li>-->
+<!--												</ul>-->
+<!--											</li>-->
+<!--											<li><span><a href="#">Customize</a></span>-->
+<!--												<ul>-->
+<!--													<li><a href="listing-row-1-sidebar-left.html">For Men</a></li>-->
+<!--													<li><a href="listing-row-2-sidebar-right.html">For Women</a></li>-->
+<!--													<li><a href="listing-row-4-sidebar-extended.html">For Boys</a></li>-->
+<!--													<li><a href="listing-grid-1-full.html">For Girls</a></li>-->
+<!--												</ul>-->
+<!--											</li>-->
+<!--										</ul>-->
+<!--									</div>-->
+<!--								</li>-->
+							</ul>
+						</nav>
+					</div>
+
+
+					<div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
+						<form method="GET" action="{% url 'product_search' %}">
+						<div class="custom-search-input">
+							<input type="text" name="search_product" value="{{ request.GET.search_product }}">
+							<button type="submit"><i class="header-icon_search_custom"></i></button>
+						</div>
+						</form>
+					</div>
+
+
+					<div class="col-xl-3 col-lg-2 col-md-3">
+						<ul class="top_tools">
+							<li>
+<!--								<div class="dropdown dropdown-cart">-->
+<!--									<a href="cart" class="cart_bt"></a>-->
+<!--									<div class="dropdown-menu">-->
+<!--										<ul>-->
+<!--											<li>-->
+<!--												<a href="product-detail-1">-->
+<!--													<figure><img src="{% static 'medicifyapp/index/img/products/product_placeholder_square_small.jpg' %}" data-src="img/products/shoes/thumb/1.jpg" alt="" width="50" height="50" class="lazy"></figure>-->
+<!--													<strong><span>1x Armor Air x Fear</span>$90.00</strong>-->
+<!--												</a>-->
+<!--												<a href="#0" class="action"><i class="ti-trash"></i></a>-->
+<!--											</li>-->
+<!--											<li>-->
+<!--												<a href="product-detail-1">-->
+<!--													<figure><img src="{% static 'medicifyapp/index/img/products/product_placeholder_square_small.jpg' %}" data-src="{% static 'medicifyapp/index/img/products/shoes/thumb/2.jpg' %}" alt="" width="50" height="50" class="lazy"></figure>-->
+<!--													<strong><span>1x Armor Okwahn II</span>$110.00</strong>-->
+<!--												</a>-->
+<!--												<a href="0" class="action"><i class="ti-trash"></i></a>-->
+<!--											</li>-->
+<!--										</ul>-->
+<!--										<div class="total_drop">-->
+<!--											<div class="clearfix"><strong>Total</strong><span>$200.00</span></div>-->
+<!--											<a href="cart" class="btn_1 outline">View Cart</a><a href="checkout" class="btn_1">Checkout</a>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+								<!-- /dropdown-cart-->
+							</li>
+
+							<li>
+									<a type="button" id="popcarts" class="cart_bt" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true">
+
+										<!-- <img src="{% static 'medicifyapp/index/img/cart_image.png' %}" alt="" width="70" height="70"> -->
+									  <strong><span id="product_cart">0</span></strong>
+
+									</a>
+
+
+									
+									<!-- <a href="cart.html" class="cart_bt"><strong>2</strong></a> -->
+							</li>
+							<li>
+								<div class="dropdown dropdown-access">
+									
+									{% if user.is_authenticated %}
+
+									<!-- <a href="/account" class="access_link"><span>Account</span></a> -->
+									<a href="/account"><font color = "#07889E" size ="4">Hi, {{request.user.first_name}}</font></a>
+									{% else %}
+									<a href="/account"><font color = "#07889E" size ="4">Login/Register</font></a>
+									
+									
+									{% endif %}
+
+
+									{% if user.is_authenticated %}
+									<div class="dropdown-menu">
+
+										<a href="/profile" class="btn_1">My Profile</a>
+
+
+										<ul>
+
+											<li>
+												<a href="{% url 'my_order' %}"><i class="ti-package"></i>My Orders</a>
+											</li>
+
+											<li>
+												<a href="{% url 'func_logout' %}">Log Out</a>
+											</li>
+
+
+
+										</ul>
+									</div>
+									{% endif %}
+								</div>
+								<!-- /dropdown-access-->
+							</li>
+							<li>
+								<a href="javascript:void(0);" class="btn_search_mob"><span>Search</span></a>
+							</li>
+							<li>
+								<a href="#menu" class="btn_cat_mob">
+									<div class="hamburger hamburger--spin" id="hamburger">
+										<div class="hamburger-box">
+											<div class="hamburger-inner"></div>
+										</div>
+									</div>
+
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<div class="search_mob_wp">
+
+				<form method="GET" action="product_search">
+					<div class="custom-search-input">
+						<input type="text" name="search_product" value="{{ request.GET.search_product }}">
+
+						<button type="submit"><i class="header-icon_search_custom"></i></button>
+					</div>
+				</form>
+			</div>
+			<!-- /search_mobile -->
+		</div>
+		<!-- /main_nav -->
+	</header>
+	<!-- /header -->
+
+
+
+		<div class="list-group-item">
+        {% block body %}{% endblock %}
+		</div>
+
+
+
+
+
+
+        <footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<h3 data-target="#collapse_1">Quick Links</h3>
+					<div class="collapse dont-collapse-sm links" id="collapse_1">
+						<ul>
+							<li><a href="/">Medicify Pvt. Ltd</a></li>
+							<li><a href="/about">About Us</a></li>
+							<li><a href="/gp_jobs">Gp Jobs</a></li>
+							<li><a href="/post_job">Post a Job</a></li>
+							<li><a href="/gp_jobs">Search Jobs</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6">
+						<h3 data-target="#collapse_3">Contacts</h3>
+					<div class="collapse dont-collapse-sm contacts" id="collapse_3">
+						<ul>
+							<li><i class="ti-home"></i>Australia</li>
+							<li><i class="ti-headphone-alt"></i>+610426677639</li>
+							<li><i class="ti-email"></i><a href="#0">medicify@gmail.com</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+
+						<h3 data-target="#collapse_4">Keep in touch</h3>
+
+
+					<form method="POST" action="{% url 'contact' %}">{% csrf_token %}
+					  <div class="form-group">
+						<input type="text" name="name" class="form-control" placeholder="Name">
+					  </div>
+						<div class="form-group">
+						<input type="email" name="email" class="form-control" placeholder="Email">
+					  </div>
+
+					  <div class="form-group">
+						<textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3" placeholder="Your Message"></textarea>
+					  </div>
+						<button class="btn_1" type="submit">Submit</button>
+					</form>
+
+				</div>
+			</div>
+			<!-- /row-->
+			<hr>
+
+		</div>
+	</footer>
+	<!--/footer-->
+	</div>
+	<!-- page -->
+
+	<div id="toTop"></div><!-- Back to top button -->
+
+	<!-- COMMON SCRIPTS -->
+    <script src="{% static 'medicifyapp/index/js/common_scripts.min.js' %}"></script>
+    <script src="{% static 'medicifyapp/index/js/main.js' %}"></script>
+
+	<!-- SPECIFIC SCRIPTS -->
+	<script src="{% static 'medicifyapp/index/js/sticky_sidebar.min.js' %}"></script>
+	<script src="{% static 'medicifyapp/index/js/specific_listing.js' %}"></script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+
+
+
+
+
+<script>
+	// find out the cart Item from localStorage
+	// console.log('working');
+	if (localStorage.getItem('product_cart')==null){
+	var product_cart={};
+	// console.log('none')
+	}
+	else{
+	product_cart = JSON.parse(localStorage.getItem('product_cart'));
+	// console.log(product_cart)
+	updateCart(product_cart)
+	}
+
+
+//update the cart
+function updateCart(product_cart){
+	var sum = 0;
+	for (var item in product_cart){
+		sum = sum + product_cart[item][0]
+		
+	}
+	localStorage.setItem('product_cart', JSON.stringify(product_cart))
+	document.getElementById('product_cart').innerHTML = sum;
+	updatePopover(product_cart);
+}
+
+
+
+//add popover to cart
+$('#popcarts').popover()
+
+updatePopover(product_cart);
+function updatePopover(product_cart){
+	console.log('we are in updatePopover');
+	var popStr = "";
+	popStr = popStr + "<h5>My Cart</h5> <div class='mx-2 my-2'>";
+	var i =1;
+	for (var item in product_cart){
+		popStr = popStr + "<b>" + i + "</b>. ";
+		popStr = popStr + product_cart[item][1].slice(0, 20) + "... Qty: " + product_cart[item][0] + '<br>';
+		i = i+1;
+
+	}
+	popStr = popStr + "</div> <a href='/cart'><button class='btn_1 m-1' id='checkout'>View Cart</button></a><a href='/'><button class='btn_1 m-1' id='clearCart' onclick='clearCart()'>Clear Cart</button></a> "
+	document.getElementById("popcarts").setAttribute('data-content', popStr);
+	$('#popcarts').popover();
+}
+
+
+//clear cart
+function clearCart(product_cart){
+	// product_cart = JSON.parse(localStorage.getItem('product_cart'));
+	// for (var item in product_cart){
+	// 	document.getElementById('div'+item).innerHTML = '<a id="' + item + '" class="tooltip-1 product_cart" data-toggle="tooltip" data-placement="left"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>'
+	// }
+	localStorage.clear();
+	product_cart={};
+	updateCart(product_cart);
+}
+
+
+
+</script>
+{% block js %}{% endblock %}
+
+</body>
+</html>

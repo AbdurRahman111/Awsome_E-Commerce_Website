@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}{{get_posted_jobs_id.job_title}}{% endblock %}
+
+{% block body %}
+
+</br>
+</br>
+</br>
+<div class="container">
+<h5><p class="text-center" style="color:#07889E;">Order ID :
+{{myorder_details.order_id}}</p>
+
+</h5><span class="badge badge-info badge-pill"> <h7>Date : {{myorder_details.order_date}}</h7></span><hr>
+</div>
+
+
+
+<ul class="list-group container">
+  <li class="list-group-item"><b>Total Items :</b></br> {{myorder_details.items_json}}</li>
+  <li class="list-group-item"><b>Total Bill :</b> {{myorder_details.total_bill}}</li>
+  <li class="list-group-item"><b>Address :</b> {{myorder_details.full_address}}</li>
+  <li class="list-group-item"><b>City :</b> {{myorder_details.city}}</li>
+  <li class="list-group-item"><b>Postal Code :</b> {{myorder_details.postal_code}}</li>
+  <li class="list-group-item"><b>Country :</b> {{myorder_details.country}}</li>
+  <li class="list-group-item"><b>Phone :</b> {{myorder_details.phone}}</li>
+  <li class="list-group-item"><b>Email :</b> {{myorder_details.email}}</li>
+</ul>
+
+
+
+</br>
+</br>
+</br>
+{% endblock %}
+

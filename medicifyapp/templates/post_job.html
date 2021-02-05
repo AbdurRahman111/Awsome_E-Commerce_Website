@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Jobs Gp Jops{% endblock %}
+
+
+{% block body %}
+<div class="list-group-item">
+						{% if user.is_authenticated %}
+
+						{% else %}
+<div class="text-center" style="color:red;">You Have To Login First To Post a Job!!</div>
+
+						{% endif %}
+
+<form class="container mb-5 pb-5" method="POST" action="/post_job">{% csrf_token %}
+					<div class="form_container">
+						<div class="form-group">
+
+							<div class="pt-5"><h3>Post Your Job</h3></div>
+
+							<label class="form-label">Job Title</label>
+							<input type="text" name="post_job_title"  class="form-control" placeholder="Job Title*" required>
+							{% for get_stat in get_status %}
+							<input type="hidden" name="job_p_status" value="{{get_stat.job_post_status}}">
+							{% endfor %}
+
+						</div>
+						<div class="form-group">
+							<label class="form-label">Company Name</label>
+							<input type="text" name="company_name" value=""  class="form-control" placeholder="Company Name*" required>
+						</div>
+
+                        <div class="form-floating">
+							<label class="form-label">Details</label>
+                          <textarea class="form-control" name="post_job_details" placeholder="Details About The job" id="floatingTextarea2" style="height: 100px"></textarea>
+                        </div>
+                        <br>
+						<div class="form-group">
+							<label class="form-label">Qualification</label>
+							<input type="text" name="qualification" value=""  class="form-control" placeholder="Qualification*">
+						</div>
+
+						<div class="row no-gutters">
+							<div class="col-6 pr-1">
+								<div class="form-group">
+									<label class="form-label">Location</label>
+									<input type="text" name="post_job_location" value=""  class="form-control" placeholder="Location*" required>
+								</div>
+							</div>
+							<div class="col-6 pl-1">
+								<div class="form-group">
+									<label class="form-label">Job Type</label>
+									<select name="post_job_type" id="job_type" class="form-control form-control form-control-lg">
+										<option selected="selected" value="Type">All Type</option>
+										<option value="Full-Time Type">Full-Time</option>
+										<option value="Contract Type">Contract</option>
+										<option value="Part-Time Type">Part-Time</option>
+										<option value="Freelance Type">Freelance</option>
+										<option value="Internship Type">Internship</option>
+										<option value="Temporary Type">Temporary</option>
+
+									</select>
+								</div>
+							</div>
+
+						</div>
+                        <div class="form-group">
+							<label class="form-label">Salary</label>
+							<input type="text" name="jobs_salary" value=""  class="form-control" placeholder="Salary*">
+						</div>
+                        <div class="form-group">
+							<label class="form-label">Your Phone Number</label>
+							<input type="text" name="phone_number" value=""  class="form-control" placeholder="Phone Number*" required>
+						</div>
+						<div class="form-group">
+							<label class="form-label">Email</label>
+							<input type="email" name="email" value="{{request.user.email}}"  class="form-control" placeholder="Email*" required>
+						</div>
+
+						{% if user.is_authenticated %}
+						<div class="text-center"><input type="submit" value="Post Job" class="btn_1 full-width"></div>
+						{% else %}
+						<div class="text-center"><input value="You Have To Login First To Post a Job!!" class="btn_1 full-width"></div>
+						{% endif %}
+					</div>
+					</form>
+</div>
+{% endblock %}
